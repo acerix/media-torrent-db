@@ -17,7 +17,7 @@ if not os.path.exists(import_csv_filename):
   import urllib.request
   import_csv_url = import_csv_filename
   temp_file_handle, import_csv_filename = tempfile.mkstemp()
-  import_csv_filename = urllib.request.urlretrieve(import_csv_url)
+  urllib.request.urlretrieve(import_csv_url, import_csv_filename)
 
 # database connection
 import sqlite3
