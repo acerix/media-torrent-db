@@ -1,6 +1,6 @@
-# ProjectName
+# Media Torrent Database
 
-  Sqlite3 database schema for storing torrent video information.
+Sqlite3 database schema for storing torrent video information.
 
 ## Basic Usage
 
