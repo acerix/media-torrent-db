@@ -1,18 +1,19 @@
 BEGIN TRANSACTION;
-CREATE TABLE "video_quality" (
+CREATE TABLE `video_quality` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `name`  TEXT NOT NULL UNIQUE,
   `priority`  INTEGER
 );
-INSERT INTO `video_quality` VALUES (1,'720p',1),
- (2,'1080p',2),
- (3,'3D',NULL),
- (4,'4K',3);
-CREATE TABLE "torrent" (
+INSERT INTO `video_quality` VALUES (1,'480p',2),
+ (2,'720p',1),
+ (3,'1080p',3),
+ (4,'4K',4),
+ (11,'3D',NULL);
+CREATE TABLE `torrent` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `hash`  BLOB NOT NULL UNIQUE
 );
-CREATE TABLE "series_season_episode_release_video" (
+CREATE TABLE `series_season_episode_release_video` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `episode_release_id`  INTEGER NOT NULL,
   `torrent_id`  INTEGER NOT NULL,
@@ -20,7 +21,7 @@ CREATE TABLE "series_season_episode_release_video" (
   FOREIGN KEY(`episode_release_id`) REFERENCES series_season_episode_release ( id ),
   FOREIGN KEY(`torrent_id`) REFERENCES torrent(id)
 );
-CREATE TABLE "series_season_episode_release" (
+CREATE TABLE `series_season_episode_release` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `episode_id`  INTEGER NOT NULL,
   `release_format_id` INTEGER NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE "series_season_episode_release" (
   FOREIGN KEY(`release_format_id`) REFERENCES release_format ( id ),
   FOREIGN KEY(`video_quality_id`) REFERENCES video_quality ( id )
 );
-CREATE TABLE "series_season_episode" (
+CREATE TABLE `series_season_episode` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `series_season_id`  INTEGER NOT NULL,
   `number`  INTEGER NOT NULL,
@@ -41,7 +42,7 @@ CREATE TABLE "series_season_episode" (
   `synopsis`  TEXT,
   FOREIGN KEY(`series_season_id`) REFERENCES series_episode ( id )
 );
-CREATE TABLE "series_season" (
+CREATE TABLE `series_season` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `series_id` INTEGER NOT NULL,
   `number`  INTEGER NOT NULL,
@@ -53,13 +54,13 @@ CREATE TABLE `series_genre` (
   FOREIGN KEY(`series_id`) REFERENCES series(id),
   FOREIGN KEY(`genre_id`) REFERENCES genre(id)
 );
-CREATE TABLE "series" (
+CREATE TABLE `series` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `title` TEXT NOT NULL,
   `synopsis`  TEXT,
   `content_rating_id` INTEGER
 );
-CREATE TABLE "release_format_label" (
+CREATE TABLE `release_format_label` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `label` TEXT NOT NULL UNIQUE,
   `release_format_id` INTEGER NOT NULL,
@@ -135,7 +136,7 @@ INSERT INTO `release_format_label` VALUES (1,'CAMRip',1),
  (68,'Scr',6),
  (69,'BrRip',16),
  (70,'DvDrip',9);
-CREATE TABLE "release_format" (
+CREATE TABLE `release_format` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `name`  TEXT NOT NULL UNIQUE,
   `priority`  INTEGER
@@ -156,7 +157,7 @@ INSERT INTO `release_format` VALUES (1,'Cam',NULL),
  (14,'WEBRip',3),
  (15,'WEBCap',3),
  (16,'Blu-ray',1);
-CREATE TABLE "movie_release_video" (
+CREATE TABLE `movie_release_video` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `movie_release_id`  INTEGER NOT NULL,
   `torrent_id`  INTEGER NOT NULL,
@@ -164,7 +165,7 @@ CREATE TABLE "movie_release_video" (
   FOREIGN KEY(`movie_release_id`) REFERENCES movie_release ( id ),
   FOREIGN KEY(`torrent_id`) REFERENCES torrent(id)
 );
-CREATE TABLE "movie_release" (
+CREATE TABLE `movie_release` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `movie_id`  INTEGER NOT NULL,
   `release_format_id` INTEGER NOT NULL,
@@ -181,7 +182,7 @@ CREATE TABLE `movie_genre` (
   FOREIGN KEY(`movie_id`) REFERENCES movie(id),
   FOREIGN KEY(`genre_id`) REFERENCES genre(id)
 );
-CREATE TABLE "movie" (
+CREATE TABLE `movie` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `title` TEXT NOT NULL,
   `synopsis`  TEXT,
