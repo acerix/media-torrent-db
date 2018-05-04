@@ -13,6 +13,12 @@ CREATE TABLE `torrent` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `hash`  BLOB NOT NULL UNIQUE
 );
+CREATE TABLE `series_alias` (
+  `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  `series_id`  INTEGER NOT NULL,
+  `title`  TEXT NOT NULL,
+  FOREIGN KEY(`series_id`) REFERENCES series ( id )
+);
 CREATE TABLE `series_season_episode_release_video` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `episode_release_id`  INTEGER NOT NULL,
@@ -157,6 +163,12 @@ INSERT INTO `release_format` VALUES (1,'Cam',NULL),
  (14,'WEBRip',3),
  (15,'WEBCap',3),
  (16,'Blu-ray',1);
+CREATE TABLE `movie_alias` (
+  `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  `movie_id`  INTEGER NOT NULL,
+  `title`  TEXT NOT NULL,
+  FOREIGN KEY(`movie_id`) REFERENCES movie ( id )
+);
 CREATE TABLE `movie_release_video` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `movie_release_id`  INTEGER NOT NULL,
