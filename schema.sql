@@ -233,6 +233,6 @@ CREATE UNIQUE INDEX `unique_season_number` ON `series_season` (`series_id` ,`num
 CREATE UNIQUE INDEX `unique_movie_release_video_torrent_filename` ON `movie_release_video` (`torrent_id` ,`filename` );
 CREATE UNIQUE INDEX `unique_movie_genre` ON `movie_genre` (`movie_id` ,`genre_id` );
 CREATE INDEX `movie_year` ON `movie` (`theater_release_year` );
-CREATE INDEX `movie_title` ON `movie` (`title` ASC)
-CREATE INDEX `series_title` ON `series` (`title` ASC)
+CREATE INDEX `movie_title` ON `movie` (`title` ASC);
+CREATE INDEX `series_title` ON `series` (`title` ASC);
 COMMIT;
