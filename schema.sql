@@ -16,7 +16,7 @@ CREATE TABLE `torrent` (
 CREATE TABLE `series_alias` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `series_id`  INTEGER NOT NULL,
-  `title`  TEXT NOT NULL,
+  `title`  TEXT NOT NULL UNIQUE,
   FOREIGN KEY(`series_id`) REFERENCES series ( id )
 );
 CREATE TABLE `series_season_episode_release_video` (
@@ -166,7 +166,7 @@ INSERT INTO `release_format` VALUES (1,'Cam',NULL),
 CREATE TABLE `movie_alias` (
   `id`  INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
   `movie_id`  INTEGER NOT NULL,
-  `title`  TEXT NOT NULL,
+  `title`  TEXT NOT NULL UNIQUE,
   FOREIGN KEY(`movie_id`) REFERENCES movie ( id )
 );
 CREATE TABLE `movie_release_video` (
@@ -233,4 +233,6 @@ CREATE UNIQUE INDEX `unique_season_number` ON `series_season` (`series_id` ,`num
 CREATE UNIQUE INDEX `unique_movie_release_video_torrent_filename` ON `movie_release_video` (`torrent_id` ,`filename` );
 CREATE UNIQUE INDEX `unique_movie_genre` ON `movie_genre` (`movie_id` ,`genre_id` );
 CREATE INDEX `movie_year` ON `movie` (`theater_release_year` );
+CREATE INDEX `movie_title` ON `movie` (`title` ASC)
+CREATE INDEX `series_title` ON `series` (`title` ASC)
 COMMIT;
