@@ -11,11 +11,13 @@ Sqlite3 database schema for storing torrent video information.
 2. Import data
 
   python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/movies.csv
+  
   python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/shows.csv
 
 3. Export data
 
   sqlite3 -header -csv media-torrent-db.sqlite < export-movies.sql > my-movies.csv
+  
   sqlite3 -header -csv media-torrent-db.sqlite < export-shows.sql > my-shows.csv
 
 ## Project Links
