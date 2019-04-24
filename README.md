@@ -13,15 +13,15 @@ sqlite3 media-torrent-db.sqlite < schema.sql
 2. Import data
 
 ```sh
-  python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/movies.csv  
-  python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/shows.csv
+python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/movies.csv  
+python3 import.py https://raw.githubusercontent.com/acerix/public-domain-media-db/master/shows.csv
 ```
 
 3. Export data
 
 ```sh
-  sqlite3 -header -csv media-torrent-db.sqlite < export-movies.sql > my-movies.csv  
-  sqlite3 -header -csv media-torrent-db.sqlite < export-shows.sql > my-shows.csv
+sqlite3 -header -csv media-torrent-db.sqlite < export-movies.sql > my-movies.csv  
+sqlite3 -header -csv media-torrent-db.sqlite < export-shows.sql > my-shows.csv
 ```
 
 ## Project Links
